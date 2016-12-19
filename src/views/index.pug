@@ -1,0 +1,25 @@
+doctype html
+html(lang='zh-TW')
+  head
+    meta(charset='UTF-8')
+    title 匿名信
+    link(rel='stylesheet', href='css/main.css')
+    script(src='http://code.jquery.com/jquery-latest.min.js')
+  body
+    form#input-form(action='', method='POST', target='hidden-target')
+      textarea#input-q1(name='q1', cols='30', rows='10')
+      button#form-submit(type='submit') SUBMIT
+      p#input-feedback
+      iframe#hidden-target(src='#', name='hidden-target', style='visibility:hidden')
+    script.
+      $('#input-form').one('submit', function() {
+      var inputq1 = encodeURIComponent($('#input-q1').val());
+      var q1ID = "entry.1678652128";
+      var baseURL = 'https://docs.google.com/forms/d/e/1FAIpQLScQvFt5kxc2zqNYqFJVtBcU3wMWVxEORzIPssgUTQdirEtt-A/formResponse?';
+      var submitRef = '&submit=Submit';
+      var submitURL = (baseURL + q1ID + "=" + inputq1 + submitRef);
+      console.log(submitURL);
+      $(this)[0].action = submitURL;
+      $('#input-feedback').text('Thank You!');
+      });
+  // https://docs.google.com/forms/d/e/1FAIpQLScQvFt5kxc2zqNYqFJVtBcU3wMWVxEORzIPssgUTQdirEtt-A/viewform
