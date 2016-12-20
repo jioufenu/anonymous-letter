@@ -1,5 +1,11 @@
 $color-primary: #171717;
-$color-textarea--bg: #aaa;
-$color-textarea--text: #fff;
+$color-light: #eee;
+$color-dark: #333;
+
+$color-textarea--bg: $color-light;
+$color-textarea--text: $color-dark;
+$color-submit-btn: $color-light;
+$color-submit-btn--hover: $color-light;
+
 
 $font-normal:"Georgia", "Xin Gothic", "Hiragino Sans GB", "Droid Sans Fallback", "Microsoft YaHei", sans-serif;

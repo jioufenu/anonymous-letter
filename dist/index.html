@@ -2,18 +2,36 @@
 <html lang="zh-TW">
   <head>
     <meta charset="UTF-8">
-    <title>匿名信</title>
+    <title>給輕痰的匿名信</title>
+    <meta name="author" content="輕痰萬事屋">
     <link rel="stylesheet" href="css/main.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   </head>
   <body>
     <form id="input-form" action="" method="POST" target="hidden-target">
-      <textarea id="input-q1" name="q1" cols="30" rows="10"></textarea>
-      <button id="form-submit" type="submit">SUBMIT</button>
-      <p id="input-feedback"></p>
+      <textarea id="input-q1" name="q1" cols="30" rows="10" autofocus required></textarea>
+      <button id="form-submit" type="submit">寄出</button>
+      <div class="pending-anim">
+        <div class="sk-folding-cube">
+          <div class="sk-cube1 sk-cube"></div>
+          <div class="sk-cube2 sk-cube"></div>
+          <div class="sk-cube4 sk-cube"></div>
+          <div class="sk-cube3 sk-cube"></div>
+        </div>
+      </div>
       <iframe id="hidden-target" src="#" name="hidden-target" style="visibility:hidden"></iframe>
     </form>
     <script>
+      document.addEventListener('DOMContentLoaded',function(){
+        var letterText = localStorage.getItem('response-q1');
+        if(letterText !== ''){
+          $('#input-q1').val(letterText);
+        }
+      });
+      $('#input-q1').on('change',function(){
+        localStorage.setItem('response-q1',$('#input-q1').val());
+      });
       $('#input-form').one('submit', function() {
       var inputq1 = encodeURIComponent($('#input-q1').val());
       var q1ID = "entry.1678652128";
@@ -22,7 +40,12 @@
       var submitURL = (baseURL + q1ID + "=" + inputq1 + submitRef);
       console.log(submitURL);
       $(this)[0].action = submitURL;
-      $('#input-feedback').text('Thank You!');
+      $('.pending-anim').addClass('is-active');
+      $('#input-q1').attr('readonly',true)
+      setTimeout(function(){
+        $('.pending-anim').removeClass('is-active')
+        $('#form-submit').text('匿名信已寄出');
+      },2000);
       });
     </script>
   </body>
