@@ -19,7 +19,7 @@ html(lang='zh-TW')
           div.sk-cube3.sk-cube
       iframe#hidden-target(src='#', name='hidden-target', style='visibility:hidden')
     script.
-      document.addEventListener('DOMContentLoaded',function(){
+      window.addEventListener('load',function(){
         var letterText = localStorage.getItem('response-q1');
         if(letterText !== ''){
           $('#input-q1').val(letterText);

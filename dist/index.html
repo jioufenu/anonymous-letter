@@ -23,7 +23,7 @@
       <iframe id="hidden-target" src="#" name="hidden-target" style="visibility:hidden"></iframe>
     </form>
     <script>
-      document.addEventListener('DOMContentLoaded',function(){
+      window.addEventListener('load',function(){
         var letterText = localStorage.getItem('response-q1');
         if(letterText !== ''){
           $('#input-q1').val(letterText);
